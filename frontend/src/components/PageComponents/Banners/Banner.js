@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function EventPage(props) {
+export default function Banner(props) {
     return (
         <section>
             <div>{props.title}</div>
-            <div>{propsd.subtitle}</div>
+            <div>{props.subtitle}</div>
         </section>
     );
 }
