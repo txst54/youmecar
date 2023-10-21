@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 export default function DriverSignup(props) {
     const [formData, setFormData] = useState({
         description: '',
+        carColor: '',
         licensePlate: '',
         seatCapacity: '',
     });
@@ -30,6 +31,15 @@ export default function DriverSignup(props) {
                 <input
                 type="text"
                 name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                />
+            </div>
+            <div>
+                <label>Car Color: </label>
+                <input
+                type="text"
+                name="color"
                 value={formData.description}
                 onChange={handleInputChange}
                 />
