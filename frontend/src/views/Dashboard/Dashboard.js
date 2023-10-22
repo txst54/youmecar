@@ -45,7 +45,8 @@ export default class App extends React.Component {
                 {
                 this.state.focusedOrg != null && this.state.focusedEvent != null ?
                     <div>
-
+                        <Banner title={this.state.focusedEvent.name} subtitle={this.state.focusedEvent.desc} />
+                        {/* Add Location Dropdown and Car Box thingy */}
                     </div>
                 : ''}
 
