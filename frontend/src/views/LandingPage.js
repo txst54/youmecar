@@ -1,6 +1,6 @@
 import carImage from "../assets/car.png";
 
-export default function(props) {
+export default function LandingPage(props) {
     return (
         <div className="h-screen flex flex-col">
             <div className="flex-1 bg-youmeblue flex flex-col items-center pt-20">

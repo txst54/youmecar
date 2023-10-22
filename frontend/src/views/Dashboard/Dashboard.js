@@ -16,6 +16,7 @@ export default class App extends React.Component {
             focusedOrg: null};
     }
     render() {
+        console.log(this.props.role);
         return(
             <div>
                 {
@@ -26,6 +27,7 @@ export default class App extends React.Component {
                         <OrgList 
                             orgs = {this.state.orgs} 
                             user = {this.props.user}
+                            role = {this.props.role}
                             onClick = {(val) => this.setState({focusedOrg: val})}
                         /> 
                     </div>

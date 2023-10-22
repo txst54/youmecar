@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Dropdown from "../../components/PageComponents/Dropdown";
-import Car from "../../components/PageComponents/Car";
+import BoxOfCars from "../../components/PageComponents/BoxOfCars";
 
+// replace with locations from drivers
 const locations = {
-    // replace with locations from drivers
     "Location A": "Location A",
     "Location B": "Location B",
     "Location C": "Location C"
@@ -23,6 +23,13 @@ export default function RiderPickUp() {
         // Perform actions like sending the pickup request to the server
     };
 
+    // replace with driver information
+    const cars = [
+        { numCols: 4 },
+        { numCols: 3 },
+        { numCols: 5 },
+    ];
+
     return (
         <div className="pickup-page">
             <h1>Rider Pickup</h1>
@@ -30,7 +37,8 @@ export default function RiderPickUp() {
             <Dropdown locations={locations} onChange={handleLocationChange} />
             <button onClick={handlePickupRequest}>Request Pickup</button>
 
-            <Car />
+            
+            <BoxOfCars carArray={cars} />
         </div>
     );
 }

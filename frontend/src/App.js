@@ -9,7 +9,6 @@ import Footer from './components/Footer';
 import NavBar from './components/NavBar';
 import Banner from './components/PageComponents/Banners/Banner';
 
-import OrgSignup from './views/Forms/OrgSignup';
 import Signup from './views/Forms/Signup';
 import Dashboard from './views/Dashboard/Dashboard';
 import LandingPage from './views/LandingPage';
@@ -46,8 +45,9 @@ function App() {
   function onAuthStateChanged(user) {
     if (user) {
       setSignedIn(true);
-      user.getIdTokenResult().then((idTokenResult) => {
-        setRole(idTokenResult.claims['role'])
+      user.getIdTokenResult(true).then((idTokenResult) => {
+        setRole(idTokenResult.claims.role)
+        console.log(idTokenResult.claims.role)
       })
     }
   }
@@ -58,12 +58,14 @@ function App() {
   }
   const renderUserContent = () => {
     // if role is not defined, then they are not registered: redirect them to sign up page
-    if (role == undefined) {
+    if (role === undefined) {
       return <Signup />
     }
-    return <Dashboard user={getUser(getAuth().getUser())}/>
+    console.log(role);
+    return <Dashboard user={getUser(getAuth().currentUser)} role={role}/>
   }
 
+  console.log(role)
   return (
     <div className="bg-youmeblue h-screen">
       <NavBar signedIn={isSignedIn} setSignedIn={setSignedIn}/>
@@ -73,9 +75,8 @@ function App() {
             <Route path="/eventPage" element={<Banner title="bruh convention" subtitle="Bruh"/>} />
             <Route path="*" element={<Navigate replace to="/" />} />
             <Route path="/dashboard" element={<Dashboard />}/>
-            <Route path="/form" element={<OrgSignup />}/>
             <Route path="/login" element={<Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)}/>}/>
-            <Route path="/landingpage" element={<LandingPage />}/>
+            <Route path="/" element={<LandingPage />}/>
             <Route path="/riderpickup" element={<RiderPickUp />}/>
           </Routes>
         </div>
