@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+
 import Footer from './components/Footer';
 import NavBar from './components/NavBar';
 import Banner from './components/PageComponents/Banners/Banner';
+
 import OrgSignup from './views/Forms/OrgSignup';
+import Signup from './views/Forms/Signup';
 import Dashboard from './views/Dashboard/Dashboard';
 import LandingPage from './views/LandingPage';
 import Login from './views/Login';
-import { Routes, Route, Navigate } from "react-router-dom";
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import React, { useState, useEffect } from "react";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import RiderPickUp from './views/PickUp/RiderPickUp';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import './App.css';
+
 const firebaseConfig = {
   apiKey: "AIzaSyA8QL8C4xTMhoTNlyvYs5I9Hd7ctuxnbzA",
   authDomain: "hacktx23-1a7df.firebaseapp.com",
@@ -37,32 +37,51 @@ function App() {
   const [isSignedIn, setSignedIn] = useState(false);
   const [role, setRole] = useState("signedOut");
 
-  function onAuthStateChanged(user) {
-    if (user) {
-      setSignedIn(true);
-      console.log(user)
-      setRole(user.role);
-    }
-  }
-
   useEffect(() => {
     const subscriber = getAuth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
   }, []);
 
+  // attach listener to auth state change
+  function onAuthStateChanged(user) {
+    if (user) {
+      setSignedIn(true);
+      user.getIdTokenResult().then((idTokenResult) => {
+        setRole(idTokenResult.claims['role'])
+      })
+    }
+  }
+
+  const getUser = () => {
+    // fetch user data from firebase rtdb based on their role
+    return 0
+  }
+  const renderUserContent = () => {
+    // if role is not defined, then they are not registered: redirect them to sign up page
+    if (role == undefined) {
+      return <Signup />
+    }
+    return <Dashboard user={getUser(getAuth().getUser())}/>
+  }
+
   return (
     <div className="bg-youmeblue h-screen">
-      <NavBar />
-      <div>
-        <Routes>
-          <Route path="/eventPage" element={<Banner title="bruh convention" subtitle="Bruh"/>} />
-          <Route path="*" element={<Navigate replace to="/" />} />
-          <Route path="/dashboard" element={<Dashboard />}/>
-          <Route path="/form" element={<OrgSignup />}/>
-          <Route path="/login" element={<Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)}/>}/>
-          <Route path="/landingpage" element={<LandingPage />}/>
-				</Routes>
-      </div>
+      <NavBar signedIn={isSignedIn} setSignedIn={setSignedIn}/>
+      {!isSignedIn ? 
+        <div>
+          <Routes>
+            <Route path="/eventPage" element={<Banner title="bruh convention" subtitle="Bruh"/>} />
+            <Route path="*" element={<Navigate replace to="/" />} />
+            <Route path="/dashboard" element={<Dashboard />}/>
+            <Route path="/form" element={<OrgSignup />}/>
+            <Route path="/login" element={<Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)}/>}/>
+            <Route path="/landingpage" element={<LandingPage />}/>
+            <Route path="/riderpickup" element={<RiderPickUp />}/>
+          </Routes>
+        </div>
+         : 
+        renderUserContent()
+      }
       <Footer />
     </div>
   );

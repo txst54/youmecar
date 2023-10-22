@@ -1,12 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 export default function NavBar(props) {
+    const signOut = () => {
+        getAuth().signOut();
+        props.setSignedIn(false);
+    }
+
     if (props.signedIn) {
         return (
-            <div className="flex justify-end">
-                <div onClick={() => props.setSignedIn(false)}>Log out</div>
-                <div></div>
+            <div className="flex justify-end py-10 px-7">
+                <div className="p-2">Welcome {getAuth().currentUser.displayName.split(" ")[0]}!</div>
+                <div onClick={() => signOut()} className="p-2 hover:cursor-pointer border border-black rounded-xl">Log out</div>
             </div>
         );
     }

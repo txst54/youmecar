@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 
-/**
- * DEPRECATED DONT USE, USE GENERALSIGNUP INSTEAD
- * @param {} props 
- * @returns 
- */
-// org specific form
-export default function OrgSignup(props) {
+// page where dirvers can input their location and custom decription
+const DriverPickUp = () => {
   const [formData, setFormData] = useState({
-    organizationName: '',
+    pickupLocation: '',
     description: '',
   });
 
@@ -24,25 +19,30 @@ export default function OrgSignup(props) {
     e.preventDefault();
     // Perform actions with the form data, such as sending it to a server or storing it in state/context
     console.log('Form Data:', formData);
+    // Reset the form after submission (optional)
+    setFormData({
+      pickupLocation: '',
+      description: '',
+    });
   };
 
   return (
-    <div className="user-form">
-      <h1>Organization Signup</h1>
+    <div className="driver-pickup">
+      <h1>Pickup Information</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="organizationName">Organization Name: </label>
+          <label htmlFor="pickupLocation">Pickup Location:</label>
           <input
             type="text"
-            id="organizationName"
-            name="organizationName"
-            value={formData.organizationName}
+            id="pickupLocation"
+            name="pickupLocation"
+            value={formData.pickupLocation}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="description">Description: </label>
+          <label htmlFor="description">Description:</label>
           <textarea
             id="description"
             name="description"
@@ -56,3 +56,7 @@ export default function OrgSignup(props) {
     </div>
   );
 };
+
+// need to implement feature to display available cars
+
+export default DriverPickUp;

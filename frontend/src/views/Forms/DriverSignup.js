@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-
+/**
+ * DEPRECATED DONT USE, USE GENERALSIGNUP INSTEAD
+ * @param {} props 
+ * @returns 
+ */
 export default function DriverSignup(props) {
     const [formData, setFormData] = useState({
         description: '',
@@ -42,7 +46,7 @@ export default function DriverSignup(props) {
                 name="color"
                 value={formData.description}
                 onChange={handleInputChange}
-                />
+                /> <div className="w-[811px] h-[514px] bg-slate-100 rounded-[20px] shadow" />
             </div>
             <div>
                 <label>License Plate: </label>

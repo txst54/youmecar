@@ -29,6 +29,12 @@ export default class App extends React.Component {
         });
     }
     render() {
-        return(<div onClick={this.handleSignOn}>Login with Google</div>);
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div onClick={this.handleSignOn} className="bg-gray-700 text-white py-4 px-8 rounded cursor-pointer">
+                    Login with Google
+                </div>
+            </div>
+        );
     }
 }
