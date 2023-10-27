@@ -61,7 +61,7 @@ export default function OrgList(props) {
                     setOrgList([]);
                 }
             }).catch((error) => {
-                // console.log(error);
+                console.log(error);
             })
         }
         else {

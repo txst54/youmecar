@@ -5,7 +5,7 @@ import { getDatabase, ref, child, get } from "firebase/database";
 export default function EventList(props) {
     const db = ref(getDatabase());
 
-    const [events, setEvents] = useState({});
+    const [events, setEvents] = useState(undefined);
 
     if (events == undefined) {
         get(child(db, 'orgs/' + props.org + '/events/')).then((snapshot) => {
@@ -16,7 +16,7 @@ export default function EventList(props) {
                 setEvents([]);
             }
         }).catch((error) => {
-            // console.log(error);
+            console.log(error);
         })
     }
     let out = [];

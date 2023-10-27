@@ -41,6 +41,7 @@ export default function GeneralSignup(props) {
         e.preventDefault();
         const body = formData;
         body.role = props.role;
+        body.email = getAuth().currentUser.email;
 
         getAuth()
             .currentUser.getIdToken()
