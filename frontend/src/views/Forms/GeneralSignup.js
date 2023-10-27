@@ -51,7 +51,12 @@ export default function GeneralSignup(props) {
                     headers: {
                         "idtoken": idToken,
                     },
-                }).catch((error) => {
+                }).then((response) => {
+                  if (response.ok) {
+                    window.location.reload();
+                  }
+                })
+                .catch((error) => {
                     console.log(error);
                 });
             })

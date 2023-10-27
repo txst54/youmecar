@@ -35,6 +35,7 @@ const provider = new GoogleAuthProvider();
 function App() {
   const [isSignedIn, setSignedIn] = useState(false);
   const [role, setRole] = useState("signedOut");
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const subscriber = getAuth().onAuthStateChanged(onAuthStateChanged);
@@ -46,8 +47,8 @@ function App() {
     if (user) {
       setSignedIn(true);
       user.getIdTokenResult(true).then((idTokenResult) => {
+        setUser(user);
         setRole(idTokenResult.claims.role)
-        console.log(idTokenResult.claims.role)
       })
     }
   }
@@ -61,11 +62,9 @@ function App() {
     if (role === undefined) {
       return <Signup />
     }
-    console.log(role);
-    return <Dashboard user={getUser(getAuth().currentUser)} role={role}/>
+    return <Dashboard user={user} role={role}/>
   }
 
-  console.log(role)
   return (
     <div className="bg-youmeblue h-screen">
       <NavBar signedIn={isSignedIn} setSignedIn={setSignedIn}/>
@@ -74,7 +73,7 @@ function App() {
           <Routes>
             <Route path="/eventPage" element={<Banner title="bruh convention" subtitle="Bruh"/>} />
             <Route path="*" element={<Navigate replace to="/" />} />
-            <Route path="/dashboard" element={<Dashboard />}/>
+            <Route path="/dashboard" element={<Dashboard user={user.uid}/>}/>
             <Route path="/login" element={<Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)}/>}/>
             <Route path="/" element={<LandingPage />}/>
             <Route path="/riderpickup" element={<RiderPickUp />}/>

@@ -16,7 +16,6 @@ export default class App extends React.Component {
             focusedOrg: null};
     }
     render() {
-        console.log(this.props.role);
         return(
             <div>
                 {
