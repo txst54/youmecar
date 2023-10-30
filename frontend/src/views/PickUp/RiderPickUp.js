@@ -32,11 +32,12 @@ export default function RiderPickUp() {
 
     return (
         <div className="pickup-page">
-            <h1>Rider Pickup</h1>
-            <p>Select your pickup location:</p>
-            <Dropdown locations={locations} onChange={handleLocationChange} />
-            <button onClick={handlePickupRequest}>Request Pickup</button>
-
+            <div className="flex items-center justify-center h-32">
+                <h1>Rider Pickup</h1>
+                <p>Select your pickup location:</p>
+                <Dropdown locations={locations} onChange={handleLocationChange} />
+                <button onClick={handlePickupRequest}>Request Pickup</button>
+            </div>
             
             <BoxOfCars carArray={cars} />
         </div>
