@@ -66,7 +66,7 @@ function App() {
   }
 
   return (
-    <div className="bg-youmeblue h-screen">
+    <div className="bg-youmeblue h-screen*2">
       <NavBar signedIn={isSignedIn} setSignedIn={setSignedIn}/>
       {!isSignedIn ? 
         <div>

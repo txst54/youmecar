@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dropdown from "../../components/PageComponents/Dropdown";
 import BoxOfCars from "../../components/PageComponents/BoxOfCars";
+import EventInfoBanner from "../../components/PageComponents/Banners/EventInfoBanner";
 
 // replace with locations from drivers
 const locations = {
@@ -31,7 +32,10 @@ export default function RiderPickUp() {
     ];
 
     return (
-        <div className="pickup-page">
+        <div className="pickup-page bg-youmeblue font-['Avenir']">
+            <div className="flex items-center justify-center">
+                <EventInfoBanner />
+            </div>
             <div className="flex items-center justify-center h-32">
                 <h1>Rider Pickup</h1>
                 <p>Select your pickup location:</p>
