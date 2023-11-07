@@ -18,7 +18,7 @@ export default class App extends React.Component {
                     
                     {userRole === undefined ? 
                         <div className="text-center mb-64 mt-9">
-                            <div className="mb-10 text-center text-slate-700 text-2xl font-extrabold font-['Avenir']">Choose Your Role:</div>
+                            <div className="mb-10 text-center text-slate-700 text-2xl font-extrabold z-['Avenir']">Choose Your Role:</div>
                             <div className="flex justify-between">
                                 <img src={personImage} alt="Role Page" className="w-1/4 ml-10" />
                                 <img src={carImage} alt="Role Page" className="w-1/4" />
@@ -26,19 +26,19 @@ export default class App extends React.Component {
                             </div>
                             <button
                                 onClick={() => this.setState({ role: "Rider" })}
-                                className="bg-gray-700 hover:bg-blue-700 text-white font-extrabold font-['Avenir'] py-2 px-4 rounded mb-2 mt-8 mr-48"
+                                className="bg-gray-700 hover:bg-blue-700 text-white font-extrabold z-['Avenir'] py-2 px-4 rounded mb-2 mt-8 mr-48"
                             >
                                 Rider
                             </button>
                             <button
                                 onClick={() => this.setState({ role: "Driver" })}
-                                className="bg-gray-700 hover:bg-blue-700 text-white font-extrabold font-['Avenir'] py-2 px-4 rounded mb-2 mt-4 mr-40"
+                                className="bg-gray-700 hover:bg-blue-700 text-white font-extrabold z-['Avenir'] py-2 px-4 rounded mb-2 mt-4 mr-40"
                             >
                                 Driver
                             </button>
                             <button
                                 onClick={() => this.setState({ role: "Org" })}
-                                className="bg-gray-700 hover:bg-blue-700 text-white font-extrabold font-['Avenir'] py-2 px-4 rounded mb-24"
+                                className="bg-gray-700 hover:bg-blue-700 text-white font-extrabold z-['Avenir'] py-2 px-4 rounded mb-24"
                             >
                                 Organization
                             </button>

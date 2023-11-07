@@ -7,8 +7,11 @@ module.exports = {
     extend: {
       backgroundColor: {
         'youmeblue': '#C2D4EA',
-      },
+      }
     },
+    fontFamily: {
+      'sans': ['Avenir', 'Figtree', 'ui-sans-serif']
+    }
   },
   plugins: [],
 }

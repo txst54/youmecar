@@ -32,7 +32,7 @@ export default function RiderPickUp() {
     ];
 
     return (
-        <div className="pickup-page bg-youmeblue font-['Avenir']">
+        <div className="pickup-page bg-youmeblue z-['Avenir']">
             <div className="flex items-center justify-center">
                 <EventInfoBanner />
             </div>

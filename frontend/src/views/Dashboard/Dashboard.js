@@ -2,6 +2,7 @@ import React from "react";
 import OrgList from "../../components/Lists/OrgList";
 import EventList from "../../components/Lists/EventList";
 import Banner from "../../components/PageComponents/Banners/Banner";
+import '@fontsource-variable/figtree';
 
 /**
  * If no organization has been chosen by the user, display the orgList

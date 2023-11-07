@@ -62,25 +62,29 @@ function App() {
     if (role === undefined) {
       return <Signup />
     }
-    return <Dashboard user={user} role={role}/>
+    return (<div>
+      <Routes>
+        <Route path="/eventPage" element={<Banner title="bruh convention" subtitle="Bruh" />} />
+        <Route path="*" element={<Navigate replace to="/" />} />
+        <Route path="/" element={<Dashboard user={user} role={role}/>} />
+        <Route path="/riderpickup" element={<RiderPickUp />} />
+        <Route path="/driverpickup" element={<DriverPickUp />} />
+      </Routes>
+    </div>)
   }
 
   return (
     <div className="bg-youmeblue h-screen*2">
-      <NavBar signedIn={isSignedIn} setSignedIn={setSignedIn}/>
-      {!isSignedIn ? 
+      <NavBar signedIn={isSignedIn} setSignedIn={setSignedIn} />
+      {!isSignedIn ?
         <div>
           <Routes>
-            <Route path="/eventPage" element={<Banner title="bruh convention" subtitle="Bruh"/>} />
             <Route path="*" element={<Navigate replace to="/" />} />
-            <Route path="/dashboard" element={<Dashboard user={user.uid}/>}/>
-            <Route path="/login" element={<Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)}/>}/>
-            <Route path="/" element={<LandingPage />}/>
-            <Route path="/riderpickup" element={<RiderPickUp />}/>
-            <Route path="/driverpickup" element={<DriverPickUp />}/>
+            <Route path="/login" element={<Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)} />} />
+            <Route path="/" element={<LandingPage />} />
           </Routes>
         </div>
-         : 
+        :
         renderUserContent()
       }
       <Footer />
