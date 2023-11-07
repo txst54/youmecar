@@ -16,7 +16,7 @@ function Car({ numCols }) {
 
   const carBodyWidth = 75;
   const carBodyHeight = 60;
-  // const seatSize = carBodyWidth / numCols;
+  const seatSize = `${carBodyWidth / (2 * numCols)}%`;
 
   return (
     <div className="car p-4 bg-youmeblue w-[calc(140px)] h-[${carWidth}px] rounded-lg relative">
@@ -37,3 +37,4 @@ function Car({ numCols }) {
 }
 
 export default Car;
+

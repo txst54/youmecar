@@ -14,7 +14,7 @@ import Dashboard from './views/Dashboard/Dashboard';
 import LandingPage from './views/LandingPage';
 import Login from './views/Login';
 import RiderPickUp from './views/PickUp/RiderPickUp';
-
+import DriverPickUp from './views/PickUp/DriverPickUp';
 import './App.css';
 
 const firebaseConfig = {
@@ -77,6 +77,7 @@ function App() {
             <Route path="/login" element={<Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)}/>}/>
             <Route path="/" element={<LandingPage />}/>
             <Route path="/riderpickup" element={<RiderPickUp />}/>
+            <Route path="/driverpickup" element={<DriverPickUp />}/>
           </Routes>
         </div>
          : 
