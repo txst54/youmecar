@@ -21,14 +21,19 @@ export default class App extends React.Component {
                 {
                 // if user has NOT selected an organization
                 this.state.focusedOrg == null ? 
-                    <div>
-                        <Banner title={"Organizations"} subtitle={"Please select an organization: "}/>
-                        <OrgList 
-                            orgs = {this.state.orgs} 
-                            user = {this.props.user}
-                            role = {this.props.role}
-                            onClick = {(val) => this.setState({focusedOrg: val})}
-                        /> 
+                    <div className="flex flex-col items-center justify-center">
+                        <div>
+                            <div className="h-8 text-center text-slate-700 text-base font-large font-['Avenir']">Choose Your Organization</div>
+                            <div className="w-60 h-px border border-slate-700"></div>
+                        </div>
+                        <div>
+                            <OrgList 
+                                orgs = {this.state.orgs} 
+                                user = {this.props.user}
+                                role = {this.props.role}
+                                onClick = {(val) => this.setState({focusedOrg: val})}
+                            /> 
+                        </div>
                     </div>
                 : ''}
                 {

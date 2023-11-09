@@ -17,6 +17,10 @@ export default function OrgList(props) {
         });
     }
 
+    const handlePrevious = () => {
+        setJoining(false);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // setJoining(false);
@@ -49,6 +53,12 @@ export default function OrgList(props) {
         setJoining(true);
     }
 
+    const renderEditOrg = () => {
+        // Allow user to edit their org list
+            // change order of orgs
+            // remove orgs
+    }
+
     let out = <div></div>
     if (!joining) {
         out = [];
@@ -74,15 +84,43 @@ export default function OrgList(props) {
             }
         }
         // add an check empty: if list is empty say "you arent in any orgs, click here to join one!"
-        out.push(<div key={""} onClick={() => renderJoinOrg()} className="hover:cursor-pointer">Join Organization</div>)
+        out.push(<div key={""} onClick={() => renderJoinOrg()} className="w-60 text-right hover:cursor-pointer z-['Avenir']">Add</div>)
+        out.push(<div key={""} onClick={() => renderEditOrg()} className="w-80 text-right hover:cursor-pointer z-['Avenir']">Edit</div>)
     }
     else {
-        out = <div>
-            <div>Please Enter Organization Join Code: </div>
-            <div>If you do not have one, contact your organization admin. </div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <input type="text" id="orgUID" name="orgUID" value={formData.orgUID} onChange={handleChange} required/>
-                <input type="submit" value="Join"></input>
+        out = <div className="user-form bg-slate-100 p-4 rounded-[20px]">
+            <h1 className="mb-4 text-center text-slate-700 text-2xl font-extrabold z-['Avenir']">Please Enter Organization Join Code:</h1>
+            <h1 className="mb-4 text-center text-slate-700 text-2xl font-bold z-['Avenir']">If you do not have one, contact your organization admin.</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group flex flex-col mb-4">
+                    <label className="w-28 h-5 text-black text-sm font-normal z-['Avenir']" htmlFor="name">
+                        Organization Join Code
+                    </label>
+                    <input
+                        type="text"
+                        id="orgUID"
+                        name="orgUID"
+                        value={formData.orgUID}
+                        onChange={handleChange}
+                        className="w-72 h-9 rounded-lg border border-neutral-400"
+                        required
+                    />
+                </div>
+                <div className="flex justify-between">
+                    <button
+                        type="button" 
+                        onClick={handlePrevious} 
+                        className="bg-slate-300 hover:bg-slate-400 text-black font-extrabold p-2 rounded-lg mt-4"
+                    >
+                        Previous
+                    </button>
+                    <button
+                        type="submit"
+                        className="w-20 bg-gray-700 hover:bg-gray-800 text-white font-extrabold p-2 rounded-lg mt-4"
+                    >
+                        {'>'}
+                    </button>
+                </div>
             </form>
         </div>
     }
