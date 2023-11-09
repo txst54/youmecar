@@ -17,14 +17,14 @@ export default class App extends React.Component {
     }
     render() {
         return(
-            <div>
+            <div className="bg-youmeblue h-screen">
                 {
                 // if user has NOT selected an organization
                 this.state.focusedOrg == null ? 
                     <div className="flex flex-col items-center justify-center">
                         <div>
                             <div className="h-8 text-center text-slate-700 text-base font-large font-['Avenir']">Choose Your Organization</div>
-                            <div className="w-60 h-px border border-slate-700"></div>
+                            <div className="mb-4 w-60 h-px border border-slate-700"></div>
                         </div>
                         <div>
                             <OrgList 
