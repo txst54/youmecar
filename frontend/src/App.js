@@ -67,7 +67,7 @@ function App() {
         <Route path="/eventPage" element={<Banner title="bruh convention" subtitle="Bruh" />} />
         <Route path="*" element={<Navigate replace to="/" />} />
         <Route path="/dashboard" element={<Dashboard user={user} role={role}/>} />
-        <Route path="/riderpickup" element={<RiderPickUp />} />
+        {/* <Route path="/riderpickup" element={<RiderPickUp />} /> */}
         <Route path="/driverpickup" element={<DriverPickUp />} />
       </Routes>
     </div>)
@@ -82,6 +82,7 @@ function App() {
             <Route path="*" element={<Navigate replace to="/" />} />
             <Route path="/login" element={<Login auth={auth} provider={provider} setSignedIn={(val) => setSignedIn(val)} />} />
             <Route path="/" element={<LandingPage isSignedIn={isSignedIn} />} />
+            <Route path="/riderpickup" element={<RiderPickUp />} />
           </Routes>
         </div>
         :

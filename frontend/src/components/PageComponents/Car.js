@@ -8,11 +8,28 @@ function Car({ numCols }) {
 
   const handleSeatClick = (row, col) => {
     if (!(row === 0 && col === 0)) {
-      const newSeatStates = [...seatStates];
-      newSeatStates[row][col] = !newSeatStates[row][col];
+      const newSeatStates = Array.from({ length: 2 }, (_, rowIndex) =>
+        Array.from({ length: numCols }, (_, colIndex) =>
+          rowIndex === row && colIndex === col ? !seatStates[row][col] : (rowIndex === 0 && colIndex === 0)
+        )
+      );
       setSeatStates(newSeatStates);
     }
   };
+
+  // const handleCarBodyClick = () => {
+  //   // Find the first available seat in the first row and mark it as taken
+  //   for (let colIndex = 0; colIndex < numCols; colIndex++) {
+  //     if (!seatStates[0][colIndex]) {
+  //       const newSeatStates = [
+  //         [...seatStates[0].slice(0, colIndex), true, ...seatStates[0].slice(colIndex + 1)],
+  //         ...seatStates.slice(1),
+  //       ];
+  //       setSeatStates(newSeatStates);
+  //       break;
+  //     }
+  //   }
+  // };
 
   const carBodyWidth = 75;
   const carBodyHeight = 60;

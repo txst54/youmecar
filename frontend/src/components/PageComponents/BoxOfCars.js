@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Car from './Car'; 
 
 function BoxOfCars({ carArray }) {
+
   // Create an array of Car components
   const cars = carArray.map((car, index) => (
     <Car key={`car${index}`} numCols={car.numCols} />
