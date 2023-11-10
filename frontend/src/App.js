@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import NavBar from './components/NavBar';
 import Banner from './components/PageComponents/Banners/Banner';
 
-import Signup from './views/Forms/Signup';
+import ChooseRole from './views/Forms/ChooseRole';
 import Dashboard from './views/Dashboard/Dashboard';
 import LandingPage from './views/LandingPage';
 import Login from './views/Login';
@@ -60,7 +60,7 @@ function App() {
   const renderUserContent = () => {
     // if role is not defined, then they are not registered: redirect them to sign up page
     if (role === undefined) {
-      return <Signup />
+      return <ChooseRole />
     }
     return (<div>
       <Routes>

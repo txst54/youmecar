@@ -134,8 +134,6 @@ export default function OrgList(props) {
                     </div>
             );
             }
-            
-
             if (Object.keys(orgList).length === 0) {
                 out.push(
                     <div key="empty-message" onClick={() => renderJoinOrg()} className="hover:cursor-pointer z-['Avenir'] text-center text-slate-700 mt-4">

@@ -12,12 +12,13 @@ export default class App extends React.Component {
 
     render() {
         const userRole = this.state.role;
+        const rectHeight = userRole === "Rider" ? "h-[350px]" : "h-[450px]";
         return(
             <div className="flex flex-col items-center h-screen bg-youmeblue">
-                <div className="Rectangle3 w-[811px] h-[450px] bg-slate-100 rounded-[20px] shadow top-1/2 left-1/2">
+                <div className="Rectangle3 w-[811px] bg-slate-100 rounded-[20px] shadow top-1/2 left-1/2">
                     
                     {userRole === undefined ? 
-                        <div className="text-center mb-64 mt-9">
+                        <div className="text-center mt-9">
                             <div className="mb-10 text-center text-slate-700 text-2xl font-extrabold z-['Avenir']">Choose Your Role:</div>
                             <div className="flex justify-between">
                                 <img src={personImage} alt="Role Page" className="w-1/4 ml-10" />

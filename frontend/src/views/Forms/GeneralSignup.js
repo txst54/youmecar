@@ -71,8 +71,8 @@ export default function GeneralSignup(props) {
             return (
                 <div className="bg-slate-100 rounded-lg">
                     <h2 className="mb-4 text-center text-slate-700 text-2xl font-extrabold z-['Avenir']">Vehicle Details</h2>
-                    <div className="form-group flex flex-col mb-4">
-                        <label className="w-28 h-5 text-black text-sm font-normal z-['Avenir']" htmlFor="description">
+                    <div className="form-group flex flex-col mb-4 items-center">
+                        <label className="translate-x-[-5.8rem] text-black text-sm font-normal z-['Avenir']" htmlFor="description">
                             Car Description
                         </label>
                         <input
@@ -85,8 +85,8 @@ export default function GeneralSignup(props) {
                             required
                         />
                     </div>
-                    <div className="form-group flex flex-col mb-4">
-                        <label className="w-28 h-5 text-black text-sm font-normal z-['Avenir']" htmlFor="carColor">
+                    <div className="form-group flex flex-col mb-4 items-center">
+                        <label className="translate-x-[-7rem] text-black text-sm font-normal z-['Avenir']" htmlFor="carColor">
                             Car Color
                         </label>
                         <input
@@ -99,8 +99,8 @@ export default function GeneralSignup(props) {
                             required
                         />
                     </div>
-                    <div className="form-group flex flex-col mb-4">
-                        <label className="w-28 h-5 text-black text-sm font-normal z-['Avenir']" htmlFor="licensePlate">
+                    <div className="form-group flex flex-col mb-4 items-center">
+                        <label className="translate-x-[-6.3rem] text-black text-sm font-normal z-['Avenir']" htmlFor="licensePlate">
                             License Plate
                         </label>
                         <input
@@ -113,8 +113,8 @@ export default function GeneralSignup(props) {
                             required
                         />
                     </div>
-                    <div className="form-group flex flex-col mb-4">
-                        <label className="w-28 h-5 text-black text-sm font-normal z-['Avenir']" htmlFor="seatCapacity">
+                    <div className="form-group flex flex-col mb-4 items-center">
+                        <label className="translate-x-[-6.2rem] text-black text-sm font-normal z-['Avenir']" htmlFor="seatCapacity">
                             Seat Capacity
                         </label>
                         <input
@@ -134,8 +134,8 @@ export default function GeneralSignup(props) {
             return (
                 <div className="bg-slate-100 rounded-lg">
                     <h2 className="mb-4 text-center text-slate-700 text-2xl font-extrabold z-['Avenir']">Organization Signup</h2>
-                    <div className="form-group flex flex-col mb-4">
-                        <label className="w-28 h-5 text-black text-sm font-normal z-['Avenir']" htmlFor="organizationName">
+                    <div className="form-group flex flex-col mb-4 items-center">
+                        <label className="translate-x-[-4.9rem] text-black text-sm font-normal z-['Avenir']" htmlFor="organizationName">
                             Organization Name:
                         </label>
                         <input
@@ -147,8 +147,8 @@ export default function GeneralSignup(props) {
                             className="w-72 h-9 rounded-lg border border-neutral-400"
                         />
                     </div>
-                    <div className="form-group flex flex-col mb-4">
-                        <label className="w-28 h-5 text-black text-sm font-normal z-['Avenir']" htmlFor="description">
+                    <div className="form-group flex flex-col mb-4 items-center">
+                        <label className="translate-x-[-6.5rem] text-black text-sm font-normal z-['Avenir']" htmlFor="description">
                             Description:
                         </label>
                         <textarea
@@ -168,8 +168,8 @@ export default function GeneralSignup(props) {
         <div className="user-form bg-slate-100 p-4 rounded-[20px]">
             <h1 className="mb-4 text-center text-slate-700 text-2xl font-extrabold z-['Avenir']">Please enter your personal information:</h1>
             <form onSubmit={handleSubmit}>
-                <div className="form-group flex flex-col mb-4">
-                    <label className="w-28 h-5 text-black text-sm font-normal z-['Avenir']" htmlFor="name">
+                <div className="form-group flex flex-col mb-4 items-center">
+                    <label className="translate-x-[-7.7rem] text-black text-sm font-normal z-['Avenir']" htmlFor="name">
                         Name
                     </label>
                     <input
@@ -182,8 +182,8 @@ export default function GeneralSignup(props) {
                         required
                     />
                 </div>
-                <div className="form-group flex flex-col mb-4">
-                    <label className="w-28 h-5 text-black text-sm font-normal z-['Avenir']" htmlFor="phone">
+                <div className="form-group flex flex-col mb-4 items-center">
+                    <label className="translate-x-[-5.9rem] text-black text-sm font-normal z-['Avenir']" htmlFor="phone">
                         Phone Number
                     </label>
                     <input
