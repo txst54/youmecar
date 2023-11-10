@@ -22,8 +22,8 @@ export default function NavBar(props) {
             return (
                 <div className="flex justify-between px-7 py-10">
                     <Link to="/otherpage" className="flex items-center">
-                        <svg class="-mr-1 h-7 w-5 text-slate-700" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" transform="rotate(90)">
-                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 text-slate-700">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                         </svg>
                         <div className="p-2 font-normal text-2xl font-bold z-['Avenir']">Thanksgiving Dinner</div>
                     </Link>
