@@ -26,9 +26,9 @@ export default function RiderPickUp() {
 
     // replace with driver information
     const cars = [
-        { numCols: 4 },
-        { numCols: 3 },
-        { numCols: 5 },
+        { numRows: 2 },
+        { numRows: 3 },
+        { numRows: 5 },
     ];
 
     return (

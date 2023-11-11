@@ -5,7 +5,7 @@ function BoxOfCars({ carArray }) {
 
   // Create an array of Car components
   const cars = carArray.map((car, index) => (
-    <Car key={`car${index}`} numCols={car.numCols} />
+    <Car key={`car${index}`} numRows={car.numRows} />
   ));
 
   return (

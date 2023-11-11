@@ -1,53 +1,51 @@
 import React, { useState } from 'react';
 
-function Car({ numCols }) {
-  const initialSeatStates = Array(2).fill().map((_, row) =>
-    Array(numCols).fill(false).map((_, col) => (row === 0 && col === 0 ? true : false))
+function Car({ numRows }) {
+  const initialSeatStates = 
+    Array(numRows).fill().map((_, row) =>
+    Array(3).fill(false).map((_, col) => (row === 0 && col === 0 ? true : false))
   );
   const [seatStates, setSeatStates] = useState(initialSeatStates);
 
-  const handleSeatClick = (row, col) => {
-    if (!(row === 0 && col === 0)) {
-      const newSeatStates = Array.from({ length: 2 }, (_, rowIndex) =>
-        Array.from({ length: numCols }, (_, colIndex) =>
-          rowIndex === row && colIndex === col ? !seatStates[row][col] : (rowIndex === 0 && colIndex === 0)
-        )
+  const handleCarBodyClick = () => {
+    if (!seatStates[0][2]) {
+      const newSeatStates = seatStates.map((row, rIndex) =>
+        rIndex === 0
+          ? [...row.slice(0, 2), true, ...row.slice(2 + 1)]
+          : [...row]
       );
       setSeatStates(newSeatStates);
+      return;
+    } else {
+      for (let rowIndex = 1; rowIndex < numRows; rowIndex++) {
+        for (let colIndex = 0; colIndex < 3; colIndex++) {
+          if (!seatStates[rowIndex][colIndex]) {
+            const newSeatStates = seatStates.map((row, rIndex) =>
+              rIndex === rowIndex
+                ? [...row.slice(0, colIndex), true, ...row.slice(colIndex + 1)]
+                : [...row]
+            );
+    
+            setSeatStates(newSeatStates);
+            return; 
+          }
+        }
+      }
     }
   };
 
-  // const handleCarBodyClick = () => {
-  //   // Find the first available seat in the first row and mark it as taken
-  //   for (let colIndex = 0; colIndex < numCols; colIndex++) {
-  //     if (!seatStates[0][colIndex]) {
-  //       const newSeatStates = [
-  //         [...seatStates[0].slice(0, colIndex), true, ...seatStates[0].slice(colIndex + 1)],
-  //         ...seatStates.slice(1),
-  //       ];
-  //       setSeatStates(newSeatStates);
-  //       break;
-  //     }
-  //   }
-  // };
-
-  const carBodyWidth = 75;
-  const carBodyHeight = 60;
-  const seatSize = `${carBodyWidth / (2 * numCols)}%`;
-
   return (
-    <div className="car p-4 bg-youmeblue w-[calc(140px)] h-[${carWidth}px] rounded-lg relative">
+    <div className="car p-4 bg-youmeblue rounded-lg relative">
       <p className="text-center">DRIVER NAME</p>
-      <div className={`car-body w-[${carBodyWidth}px] h-[${carBodyHeight}px] bg-gray-400 mx-auto rounded-lg relative grid grid-cols-2 grid-rows-2 gap-2 flex items-center`}>
-        {seatStates.map((row, rowIndex) => 
-          row.map((isTaken, colIndex) => (
-            <div
-              key={`${rowIndex}-${colIndex}`}
-              className={`seat w-10 h-10 rounded-full cursor-pointer transition-colors duration-300 mx-1 ${isTaken ? 'bg-red-500' : 'bg-white hover:bg-red-300'} `}
-              onClick={() => handleSeatClick(rowIndex, colIndex)}
-            ></div>
-          ))
-        )}
+      <div className="car-body bg-gray-400 cursor-pointer transition-colors duration-300 hover:bg-slate-700 mx-auto rounded-lg relative grid grid-rows-${numRows} grid-cols-3" onClick={handleCarBodyClick}>
+          {seatStates.map((row, rowIndex) => 
+            row.map((isTaken, colIndex) => (
+              <div
+                key={`${rowIndex}-${colIndex}`}
+                className={`translate-x-2 translate-y-1 flex seat w-3.5 h-3.5 mt-2 mb-5 rounded-full mx-1 ${isTaken ? 'bg-red-500' : (rowIndex === 0 && colIndex === 1 ? 'bg-black' : 'bg-white')}`}
+              ></div>
+            ))
+          )}
       </div>
     </div>
   );
