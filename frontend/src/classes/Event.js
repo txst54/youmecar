@@ -5,7 +5,7 @@ class Event {
     }
     equals(event) {
         if (event instanceof Event) {
-            if (event.name == this.name && event.desc == this.desc) {
+            if (event.name === this.name && event.desc === this.desc) {
                 return true;
             }
         }

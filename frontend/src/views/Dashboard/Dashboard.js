@@ -31,7 +31,6 @@ export default class App extends React.Component {
                                 orgs = {this.state.orgs} 
                                 user = {this.props.user}
                                 role = {this.props.role}
-                                onClick = {(val) => this.setState({focusedOrg: val})}
                             /> 
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, child, get } from "firebase/database";
+import {Link} from "react-router-dom";
 
 export default function OrgList(props) {
     const dbRef = ref(getDatabase());
@@ -72,7 +73,21 @@ export default function OrgList(props) {
         setEditMode(false); 
     };
 
+    const fetchOrgList = () => {
+        get(child(dbRef, props.role + '/' + props.user.uid + '/orgs')).then((snapshot) => {
+            if (snapshot.exists()) {
+                setOrgList(snapshot.val());
+            }
+            else {
+                setOrgList([]);
+            }
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+
     // TESTING
+    /*
     useEffect(() => {
         const sampleOrgList = {
             org1: "Acts College Fellowship",
@@ -82,75 +97,63 @@ export default function OrgList(props) {
             org5: "Longhorn Racing",
         };
         setOrgList(sampleOrgList);
-    }, []);
+    }, []);*/
 
-    let out = <div></div>
-    if (!joining) {
-        out = [];
-        if (orgList === undefined) {
-            get(child(dbRef, props.role + '/' + props.user.uid + '/orgs')).then((snapshot) => {
-                if (snapshot.exists()) {
-                    setOrgList(snapshot.val());
-                }
-                else {
-                    setOrgList([]);
-                }
-            }).catch((error) => {
-                console.log(error);
-            })
-        }
-        else {
-            if (editMode) {
-                out.push(
-                    <div className="flex mr-6" key="orgs-container">
-                        <div className="edit-list">
-                            {orgList && Object.keys(orgList).map((org) => (
-                                <svg key={org} onClick={() => removeOrg(org)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="hover:cursor-pointer right-8 h-7 w-6 mt-3 relative">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            ))}
-                        </div>
-                        <div className="org-list">
-                            {Object.keys(orgList).map((org) => (
-                                <div key={org} onClick={() => props.onClick(org)}>
-                                    <div className="flex justify-center hover:cursor-pointer text-center text-slate-700 text-2xl font-extrabold z-['Avenir'] mt-2">
-                                        {orgList[org]}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                );
-            } else {
-                out.push(
-                    <div className="org-list">
-                        {Object.keys(orgList).map((org) => (
-                            <div key={org} onClick={() => props.onClick(org)}>
-                                <div className="flex justify-center hover:cursor-pointer text-center text-slate-700 text-2xl font-extrabold z-['Avenir'] mt-2">
-                                    {orgList[org]}
-                                </div>
+    const renderEditMode = () => {
+        return (
+            <div className="flex mr-6" key="orgs-container">
+                <div className="edit-list">
+                    {orgList && Object.keys(orgList).map((org) => (
+                        <svg key={org} onClick={() => removeOrg(org)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="hover:cursor-pointer right-8 h-7 w-6 mt-3 relative">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    ))}
+                </div>
+                <div className="org-list">
+                    {Object.keys(orgList).map((org) => (
+                        <div key={org} onClick={() => props.onClick(org)}>
+                            <div className="flex justify-center hover:cursor-pointer text-center text-slate-700 text-2xl font-extrabold z-['Avenir'] mt-2">
+                                {orgList[org]}
                             </div>
-                        ))}
-                    </div>
-            );
-            }
-            if (Object.keys(orgList).length === 0) {
-                out.push(
-                    <div key="empty-message" onClick={() => renderJoinOrg()} className="hover:cursor-pointer z-['Avenir'] text-center text-slate-700 mt-4">
-                        You aren't in any orgs. Click here to join one!
-                    </div>
-                );
-            } else {
-                out.push(
-                    <div className="flex justify-center space-x-20 mt-4" key="action-buttons">
-                        <div key={"add"} onClick={() => renderJoinOrg()} className="hover:cursor-pointer z-['Avenir'] text-sm">Add</div>
-                        <div key={"edit"} onClick={() => renderEditOrg()} className="hover:cursor-pointer z-['Avenir'] text-sm">Edit</div>
-                    </div>
-                );
-            }
-        }
-    } else {
-        out = <div className="user-form bg-slate-100 p-4 rounded-[20px] shadow">
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
+    const renderOrgList = () => {
+        return (
+            <div className="org-list">
+                {Object.keys(orgList).map((org) => (
+                    <Link  key={org} to={"/organizations/"+org} className="flex justify-center hover:cursor-pointer text-center text-slate-700 text-2xl font-extrabold z-['Avenir'] mt-2">
+                        {orgList[org]}
+                    </Link>
+                ))}
+            </div>
+        );
+    }
+
+    const renderEmptyOrgListMsg = () => {
+        return (
+            <div key="empty-message" onClick={() => renderJoinOrg()} className="hover:cursor-pointer z-['Avenir'] text-center text-slate-700 mt-4">
+                You aren't in any orgs. Click here to join one!
+            </div>
+        );
+    }
+
+    const renderJoinEditBar = () => {
+        return (
+            <div className="flex justify-center space-x-20 mt-4" key="action-buttons">
+                <div key={"add"} onClick={() => renderJoinOrg()} className="hover:cursor-pointer z-['Avenir'] text-sm">Add</div>
+                <div key={"edit"} onClick={() => renderEditOrg()} className="hover:cursor-pointer z-['Avenir'] text-sm">Edit</div>
+            </div>
+        );
+    }
+
+    const renderJoinForm = () => {
+        return (
+            <div className="user-form bg-slate-100 p-4 rounded-[20px] shadow">
                 <h1 className="text-center text-slate-700 text-2xl font-extrabold z-['Avenir']">Please Enter Organization Join Code:</h1>
                 <h1 className="mb-4 text-center text-slate-700 text-xl z-['Avenir']">If you do not have one, contact your organization admin.</h1>
                 <form onSubmit={handleSubmit}>
@@ -170,8 +173,8 @@ export default function OrgList(props) {
                     </div>
                     <div className="flex justify-between">
                         <button
-                            type="button" 
-                            onClick={handlePrevious} 
+                            type="button"
+                            onClick={handlePrevious}
                             className="bg-slate-300 hover:bg-slate-400 text-black font-extrabold p-2 rounded-lg mt-4"
                         >
                             Previous
@@ -184,8 +187,33 @@ export default function OrgList(props) {
                         </button>
                     </div>
                 </form>
-        </div>
+            </div>
+        );
     }
 
+    if (joining) {
+        return renderJoinForm();
+    }
+
+    let out = [];
+    // if orgList is undefined, it means it has not been fetched and stored in state yet
+    // else orgList is defined, render. 
+    if (orgList === undefined) {
+        fetchOrgList();
+    }
+    else {
+        out.push(
+            editMode ?
+                renderEditMode()
+                :
+                renderOrgList()
+        );
+        out.push(
+            Object.keys(orgList).length === 0 ?
+                renderEmptyOrgListMsg()
+                :
+                renderJoinEditBar()
+        );
+    }
     return out;
 }

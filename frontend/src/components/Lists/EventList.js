@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, child, get } from "firebase/database";
+import {Link} from "react-router-dom";
 
 export default function EventList(props) {
     const db = ref(getDatabase());
 
     const [events, setEvents] = useState(undefined);
 
-    if (events == undefined) {
+    if (events === undefined) {
         get(child(db, 'orgs/' + props.org + '/events/')).then((snapshot) => {
             if (snapshot.exists()) {
                 setEvents(snapshot.val());
@@ -20,12 +21,13 @@ export default function EventList(props) {
         })
     }
     let out = [];
+    console.log(props.events);
     for (let event in props.events) {
         out.push(
-            <div onClick={() => props.onClick(event)}>
+            <Link to={"/events/" + event.id}>
                 <div>Event: {event.name}</div>
                 <div>{event.desc}</div>
-            </div>
+            </Link>
         );
     }
     return out;

@@ -65,7 +65,7 @@ function App() {
     return (<div>
       <Routes>
         <Route path="/eventPage" element={<Banner title="bruh convention" subtitle="Bruh" />} />
-        <Route path="*" element={<Navigate replace to="/" />} />
+        <Route path="*" element={<Navigate replace to="/dashboard" />} />
         <Route path="/dashboard" element={<Dashboard user={user} role={role}/>} />
         {/* <Route path="/riderpickup" element={<RiderPickUp />} /> */}
         <Route path="/driverpickup" element={<DriverPickUp />} />
